@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexOf methoduna Başlangıç indexi Ekleme</title>
+    <script>
+
+ var kisiler=[
+            {ad:"Ahmet",soyad:"Taş",yas:20},
+            {ad:"Ayşe",soyad:"Yılmaz",yas:25},
+            {ad:"Hasan",soyad:"Kurt",yas:16},
+            {ad:"Mustafa",soyad:"Yaşar",yas:20},
+            {ad:"Fatma",soyad:"Tunç",yas:17},
+            {ad:"Hayriye",soyad:"Sefa",yas:28}
+        ];// Metodumuzda kullanmak üzere  json formatında bir veri tanımladık 
+
+
+ function odev(dizi,fnc,index){//dizi = dizinin adı; fnc= fonksiyon; index = start indexi;
+         var  yeniDizi=dizi.slice(index); //slice = parametre olarak verilen indexten sonrasını yeni bir dizi halinde kopyalayarak geri döndürüyör, 
+         var deger = yeniDizi.findIndex(fnc);//findIndex methodumuzu yenidizimizde kullandık;
+         return deger+index; //slice ile sildiğimiz indisleri geri ekledik
+       }
+       console.log("Ödev basarili : ");
+      console.log(odev(kisiler,(eleman)=>eleman.yas < 20,3));
+      
+    </script>
+</head>
+<body>
+<h1 style="color:purple;">Look at the Console</h1>
+</body>
+</html>
