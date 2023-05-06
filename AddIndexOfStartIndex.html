@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +8,54 @@
     <title>indexOf methoduna Başlangıç indexi Ekleme</title>
     <script>
 
- var kisiler=[
-            {ad:"Ahmet",soyad:"Taş",yas:20},
-            {ad:"Ayşe",soyad:"Yılmaz",yas:25},
-            {ad:"Hasan",soyad:"Kurt",yas:16},
-            {ad:"Mustafa",soyad:"Yaşar",yas:20},
-            {ad:"Fatma",soyad:"Tunç",yas:17},
-            {ad:"Hayriye",soyad:"Sefa",yas:28}
+        var kisiler = [
+            { ad: "Ahmet", soyad: "Taş", yas: 20 },
+            { ad: "Ayşe", soyad: "Yılmaz", yas: 25 },
+            { ad: "Hasan", soyad: "Kurt", yas: 16 },
+            { ad: "Mustafa", soyad: "Yaşar", yas: 20 },
+            { ad: "Fatma", soyad: "Tunç", yas: 17 },
+            { ad: "Hayriye", soyad: "Sefa", yas: 20 }
         ];// Metodumuzda kullanmak üzere  json formatında bir veri tanımladık 
 
+        //Yöntem Bir
+        //dizi = dizinin adı; fnc= fonksiyon; index = start indexi;
+        function Yöntem1(dizi, fnc, index) {
+            //slice = parametre olarak verilen indexten sonrasını yeni bir dizi halinde kopyalayarak geri döndürüyör, 
+            var yeniDizi = dizi.slice(index); 
+            //findIndex methodumuzu yenidizimizde kullandık;
+            var deger = yeniDizi.findIndex(fnc);
+            //slice ile sildiğimiz indisleri geri ekledik
+            return deger + index; 
+        }
+        console.log("Yöntem 1 Sonuç : ");
+        console.log(Yöntem1(kisiler,(eleman)=>eleman.yas < 20,3));
 
- function odev(dizi,fnc,index){//dizi = dizinin adı; fnc= fonksiyon; index = start indexi;
-         var  yeniDizi=dizi.slice(index); //slice = parametre olarak verilen indexten sonrasını yeni bir dizi halinde kopyalayarak geri döndürüyör, 
-         var deger = yeniDizi.findIndex(fnc);//findIndex methodumuzu yenidizimizde kullandık;
-         return deger+index; //slice ile sildiğimiz indisleri geri ekledik
-       }
-       console.log("Ödev basarili : ");
-      console.log(odev(kisiler,(eleman)=>eleman.yas < 20,3));
-      
+        
+
+        //Yöntem 2
+        //Yine aynı parametreli methodumuzu tanımladık
+        function Yöntem2(dizi, fnc, index) {
+            //kontrol function tanımladık
+            function KontrolFnc(element) {
+                //if ile elemntin indexini ve parametre olarak aldığımız fonksiyona uygunluğunu ölştük
+                if (dizi.indexOf(element) > index && fnc(element) == true) {
+                    //uygunsa true
+                    return true;
+                }
+                //değilse false
+                return false;
+            }
+            //Ve son olarak yeni methodumuzu findİndexte kullanıp sonucu geri döndürdük
+            return dizi.findIndex(KontrolFnc);
+        }
+        //temel olarak fnc (parametre olarak aldığımız fonksiyon) a startup İndex şartı eklemiş olduk;
+        console.log("Yöntem 2 sonuç : ");
+        console.log(Yöntem2(kisiler, (eleman) => eleman.yas == 20, 2));
     </script>
 </head>
+
 <body>
-<h1 style="color:purple;">Look at the Console</h1>
+    <h1 style="color:purple;">Look at the Console</h1>
 </body>
+
 </html>
